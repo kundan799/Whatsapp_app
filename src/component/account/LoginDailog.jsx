@@ -1,8 +1,9 @@
 import { Dialog, Box, Typography, ListItem, List, styled } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { qrCodeImage } from "../../Data/data";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
+import { AccountContext } from "../context/AccountProvider";
 
 const Component = styled(Box)`
   display: flex;
@@ -42,9 +43,12 @@ const dailogStyle = {
   overFlow: "hidden",
 };
 const LoginDailog = () => {
+
+  const {setAccount}=useContext(AccountContext)
   const LoginSucess = (res) => {
+    // using jwt decode user details
     const userData=jwt_decode(res.credential)
-    console.log(userData)
+    setAccount(userData)
   };
   const LoginError = (res) => {
     console.log("login failed",res)
@@ -54,7 +58,7 @@ const LoginDailog = () => {
   // google outh run on port localhost:3000
   return (
     <div>
-      <Dialog open={true} PaperProps={{ sx: dailogStyle }}>
+      <Dialog open={true} PaperProps={{ sx: dailogStyle }} hideBackdrop={true}>
         <Component>
           <Caintaner>
             <Title>To use whatsapp on your computer</Title>
