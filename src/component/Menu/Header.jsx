@@ -1,10 +1,12 @@
 import { Box, styled } from "@mui/material";
 import React, { useContext } from "react";
 import { AccountContext } from "../context/AccountProvider";
-import ChatIcon from '@mui/icons-material/Chat';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-import PeopleIcon from '@mui/icons-material/People';
+import ChatIcon from "@mui/icons-material/Chat";
+
+import AutorenewIcon from "@mui/icons-material/Autorenew";
+import PeopleIcon from "@mui/icons-material/People";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
+import Headermenu from "./Headermenu";
 
 const Header = () => {
   const { account } = useContext(AccountContext);
@@ -13,9 +15,8 @@ const Header = () => {
     height: 44px;
     background: #f0f2f5;
     padding: 8px 16px;
-    display:flex;
-    align-items:center;
-
+    display: flex;
+    align-items: center;
   `;
 
   const Image = styled("img")({
@@ -25,21 +26,19 @@ const Header = () => {
   });
 
   // icon componenet
-  const IconComponent=styled(Box)`
-  margin-left:auto;
-  &>*{
-    margin-left:2px;
-    padding:8px;
-    color:#54656f;
-    font-size:22px;
-  }
-  & :first-child{
-    font-size:22px;
-    margin-right:8px;
-  }
-  
- 
-  `
+  const IconComponent = styled(Box)`
+    margin-left: auto;
+    & > * {
+      margin-left: 2px;
+      padding: 8px;
+      color: #54656f;
+      font-size: 22px;
+    }
+    & :first-child {
+      font-size: 22px;
+      margin-right: 8px;
+    }
+  `;
 
   return (
     <>
@@ -55,11 +54,10 @@ const Header = () => {
           />
         )}
         <IconComponent>
-            <PeopleIcon/>
-            <AutorenewIcon/>
-            <ChatIcon/>
-            <MoreVertIcon/>
-
+          <PeopleIcon />
+          <AutorenewIcon />
+          <ChatIcon />
+          <Headermenu/>
         </IconComponent>
       </Component>
     </>
