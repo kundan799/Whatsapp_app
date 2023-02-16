@@ -47,7 +47,8 @@ const LoginDailog = () => {
   const {setAccount}=useContext(AccountContext)
   const LoginSucess = (res) => {
     // using jwt decode user details
-    const userData=jwt_decode(res.credential)
+    const userData=jwt_decode(res.credential);
+    console.log("userData",userData)
     setAccount(userData)
   };
   const LoginError = (res) => {

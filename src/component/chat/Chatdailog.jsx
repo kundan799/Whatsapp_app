@@ -10,12 +10,12 @@ display:flex;
 
 `
 const LeftComponenet=styled(Box)`
-Width:25%;
+Width:30%;
 min-width:20%;
 
 `
 const RightComponent=styled(Box)`
-width:73%;
+width:67%;
 min-width:300px;
 height:100%;
 border-left: 1px solid rgb(0,0,0,0.14)
