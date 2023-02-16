@@ -7,8 +7,11 @@ import AutorenewIcon from "@mui/icons-material/Autorenew";
 import PeopleIcon from "@mui/icons-material/People";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Headermenu from "./Headermenu";
+import InfoDrower from "../Drower/InfoDrower";
+import { useState } from "react";
 
 const Header = () => {
+  const [openDrower ,setOpenDrower]=useState(false)
   const { account } = useContext(AccountContext);
 
   const Component = styled(Box)`
@@ -40,17 +43,23 @@ const Header = () => {
     }
   `;
 
+  // drower
+  const handleDrower=()=>{
+    setOpenDrower(true)
+  }
+
   return (
     <>
       <Component>
         {account.picture ? (
-          <Image src={account.picture} alt="userdp" />
+          <Image src={account.picture} alt="userdp"  onClick={handleDrower}/>
         ) : (
           <Image
             src={
               "https://lh3.googleusercontent.com/a/AEdFTp4L4MkGaZO7LYQ3FQBYwUuHQjZN8-JTL4lhN20p=s96-c"
             }
             alt="userdp"
+            onClick={handleDrower}
           />
         )}
         <IconComponent>
@@ -60,6 +69,7 @@ const Header = () => {
           <Headermenu/>
         </IconComponent>
       </Component>
+      <InfoDrower open={openDrower} setOpen={setOpenDrower}/>
     </>
   );
 };
