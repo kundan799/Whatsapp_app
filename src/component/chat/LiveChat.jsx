@@ -34,7 +34,7 @@ color:#41525d;
 
 `
 const StyledDivider=styled(Divider)`
-margin:20px 0;
+margin:5px 0;
 opacity:0.4px;
 
 
