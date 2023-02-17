@@ -4,6 +4,7 @@ import { qrCodeImage } from "../../Data/data";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { AccountContext } from "../context/AccountProvider";
+import { addUser } from "../../service/api";
 
 const Component = styled(Box)`
   display: flex;
@@ -45,11 +46,12 @@ const dailogStyle = {
 const LoginDailog = () => {
 
   const {setAccount}=useContext(AccountContext)
-  const LoginSucess = (res) => {
+  const LoginSucess = async (res) => {
     // using jwt decode user details
     const userData=jwt_decode(res.credential);
-    console.log("userData",userData)
+    //console.log("userData",userData)
     setAccount(userData)
+    await addUser(userData)
   };
   const LoginError = (res) => {
     console.log("login failed",res)
