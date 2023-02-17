@@ -7,7 +7,7 @@ const MenuOption = styled(MenuItem)`
   padding: 16px 60px 5px 24px;
   color: #4a4a4a;
 `;
-const Headermenu = () => {
+const Headermenu = ({setOpenDrower}) => {
   const [open, setOpen] = useState(null);
 
   const handleClose = () => {
@@ -36,7 +36,7 @@ const Headermenu = () => {
           horizontal: "right",
         }}
       >
-        <MenuOption onClick={handleClose}>Profile</MenuOption>
+        <MenuOption onClick={()=>{handleClose();setOpenDrower(true);}}>Profile</MenuOption>
         <MenuOption onClick={handleClose}>My account</MenuOption>
         <MenuOption onClick={handleClose}>Logout</MenuOption>
       </Menu>

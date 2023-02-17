@@ -11,7 +11,7 @@ import InfoDrower from "../Drower/InfoDrower";
 import { useState } from "react";
 
 const Header = () => {
-  const [openDrower ,setOpenDrower]=useState(false)
+  const [openDrower, setOpenDrower] = useState(false);
   const { account } = useContext(AccountContext);
 
   const Component = styled(Box)`
@@ -44,15 +44,15 @@ const Header = () => {
   `;
 
   // drower
-  const handleDrower=()=>{
-    setOpenDrower(true)
-  }
+  const handleDrower = () => {
+    setOpenDrower(true);
+  };
 
   return (
     <>
       <Component>
         {account.picture ? (
-          <Image src={account.picture} alt="userdp"  onClick={handleDrower}/>
+          <Image src={account.picture} alt="userdp" onClick={handleDrower} />
         ) : (
           <Image
             src={
@@ -66,10 +66,10 @@ const Header = () => {
           <PeopleIcon />
           <AutorenewIcon />
           <ChatIcon />
-          <Headermenu/>
+          <Headermenu setOpenDrower={setOpenDrower} />
         </IconComponent>
       </Component>
-      <InfoDrower open={openDrower} setOpen={setOpenDrower}/>
+      <InfoDrower open={openDrower} setOpen={setOpenDrower} />
     </>
   );
 };
