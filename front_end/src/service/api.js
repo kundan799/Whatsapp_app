@@ -20,3 +20,12 @@ export const getUser = async () => {
     console.log("get error when call getuserApi ", err.message);
   }
 };
+
+// conversation
+export const setCoversation = async (data) => {
+  try {
+    await axios.post(`${url}/conversation/add`, data);
+  } catch (err) {
+    console.log("get error when call setconversation ", err.message);
+  }
+};
