@@ -29,3 +29,38 @@ export const setCoversation = async (data) => {
     console.log("get error when call setconversation ", err.message);
   }
 };
+
+//getCoversation
+
+export const getCoversation = async (data) => {
+  try {
+   let res= await axios.post(`${url}/conversation/get`, data);
+   return res.data;
+  } catch (err) {
+    console.log("get error when call getconversation ", err.message);
+  }
+};
+
+
+// message post 
+export const UserMeaasge=async(data)=>{
+  try{
+    await axios.post(`${url}/message/add`,data)
+
+  }catch(err){
+    console.log("get error when call UserMeaasge ", err.message);
+  }
+
+}
+
+// get message
+
+export const getMssage=async(id)=>{
+  try{
+    let res=await axios.get(`${url}/message/get/${id}`);
+    return res.data;
+  }catch(err){
+    console.log("get error when call getMeaasge ", err.message);
+
+  }
+}
