@@ -19,3 +19,16 @@ export const newConversation=async(req,res)=>{
 
     }
 }
+
+export const getConversation=async(req,res)=>{
+    try{
+        // check if senderid and receverid persent then give then object of particular one 
+        let conversation =await Conversation.findOne({members:{$all :[req.body.senderId,req.body.receverId]}})
+        return res.status(200).json(conversation)
+
+    }catch(err){
+        return res.status(500).json(err.message)
+
+    }
+
+}
