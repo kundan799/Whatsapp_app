@@ -19,7 +19,7 @@ const Image = styled("img")({
 
 const Userconv = ({ data }) => {
   const { setPerson, account } = useContext(AccountContext);
-  // console.log("userc",data)
+   console.log("userc",data)
   const getuser = async () => {
     setPerson(data);
     await setCoversation({ senderId: account.sub, receverId: data.sub });
@@ -27,7 +27,8 @@ const Userconv = ({ data }) => {
   return (
     <Component onClick={getuser}>
       <Box>
-        <Image src={data.picture} alt="" />
+        {/* <Image src={data.picture} alt="single pic" /> */}
+        <Image src={data.picture} alt="pic" />
       </Box>
       <Box>
         <Box>

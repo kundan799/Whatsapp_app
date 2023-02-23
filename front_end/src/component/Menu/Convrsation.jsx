@@ -19,6 +19,7 @@ const Convrsation = ({ text }) => {
   useEffect(() => {
     const fetchData = async () => {
       let res = await getUser();
+      console.log("data",res)
 
       // search find
       const SearchFilter = res.filter((el) =>
@@ -35,7 +36,7 @@ const Convrsation = ({ text }) => {
       {user?.map(
         (el, i) =>
           // check if user login then ther data not show in conversation page
-          el.sub != account.sub && (
+          el.sub !== account.sub && (
             <>
               <Userconv key={i} data={el} />
               <DividerComponent />

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //icon
 
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import AttachFileOutlinedIcon from "@mui/icons-material/AttachFileOutlined";
 import MicIcon from "@mui/icons-material/Mic";
 import { Box, InputBase, styled } from "@mui/material";
+import { fileUplode } from "../../service/api";
 
 //css
 const Caintaner = styled(Box)`
@@ -33,19 +34,43 @@ const SearchBox = styled(InputBase)`
 const ClipIcon = styled(AttachFileOutlinedIcon)`
   transform: rotate(40deg);
 `;
-const ChatFooter = ({SendText,setValue,value}) => {
- 
+const ChatFooter = ({ SendText, setValue, value,setFile, file,setImage }) => {
+
+  useEffect(()=>{
+    const setImagedata=async()=>{
+      if(file){
+        const data=new FormData();
+        data.append("name",file.name);
+        data.append("file",file);
+        let res=await fileUplode(data);
+        setImage(res.data)// give image link and set here
+
+      }
+    }
+    setImagedata()
+
+  },[file])
+
+  //
+  const onFilexhange=(e)=>{
+    //console.log(e)
+    setFile(e.target.files[0]);
+    setValue(e.target.files[0].name);
+
+  }
   return (
     <Caintaner>
       <EmojiEmotionsOutlinedIcon />
-      <ClipIcon />
+      <label htmlFor="fileInput">
+        <ClipIcon />
+      </label>
+      <input type="file" style={{ display: "none" }} id="fileInput" onChange={onFilexhange} />
       <SInputBox>
         <SearchBox
           placeholder="type a message"
           onChange={(e) => setValue(e.target.value)}
-          onKeyPress={(e)=>SendText(e)}
+          onKeyPress={(e) => SendText(e)}
           value={value}
-
         />
       </SInputBox>
       <MicIcon />

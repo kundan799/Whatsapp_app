@@ -64,3 +64,14 @@ export const getMssage=async(id)=>{
 
   }
 }
+
+// file uplode to server
+
+export const fileUplode=async(data)=>{
+  try{
+    return await axios.post(`${url}/file/uplode`,data)
+  }catch(err){
+    console.log("get error when call fileUplode api ", err.message);
+
+  }
+}
