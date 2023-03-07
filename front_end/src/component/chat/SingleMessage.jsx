@@ -1,7 +1,7 @@
 import { Box, Typography, styled } from "@mui/material";
 import React, { useContext } from "react";
 import GetAppIcon from '@mui/icons-material/GetApp';
-import { formetDate } from "../../utils/utils";
+import { formetDate,DownloadAny } from "../../utils/utils";
 import { AccountContext } from "../context/AccountProvider";
 import {iconPDF} from "../../Data/data"
 
@@ -82,6 +82,7 @@ const Imagemessage = ({ el }) => {
       )}
       <Time  style={{ position: 'absolute', bottom: 0, right: 0 }}>
         <GetAppIcon
+        onClick={(e)=>DownloadAny(e,el.text)}
          fontSize='small' 
          style={{ marginRight: 10, border: '1px solid grey', borderRadius: '50%' }} 
         

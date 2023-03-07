@@ -13,7 +13,7 @@ const LeftComponenet = styled(Box)`
   min-width: 380px;
 `;
 const RightComponent = styled(Box)`
-  width: 71%;
+  width: 72%;
   min-width: 300px;
   height: 100%;
   border-left: 1px solid rgb(0, 0, 0, 0.14);

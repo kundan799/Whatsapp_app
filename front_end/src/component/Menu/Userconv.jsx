@@ -1,6 +1,6 @@
 import { Box, Typography, styled } from "@mui/material";
-import React, { useContext } from "react";
-import { setCoversation } from "../../service/api";
+import React, { useContext, useEffect } from "react";
+import { setCoversation,getCoversation } from "../../service/api";
 import { AccountContext } from "../context/AccountProvider";
 
 const Component = styled(Box)`
@@ -19,7 +19,15 @@ const Image = styled("img")({
 
 const Userconv = ({ data }) => {
   const { setPerson, account } = useContext(AccountContext);
-   console.log("userc",data)
+   //console.log("userc",data)
+
+   useEffect(()=>{
+    const getConversationDetails=async()=>{
+      const data=await getCoversation({ senderId: account.sub, receverId: data.sub })
+    }
+
+   },[])
+
   const getuser = async () => {
     setPerson(data);
     await setCoversation({ senderId: account.sub, receverId: data.sub });

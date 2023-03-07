@@ -24,10 +24,11 @@ const SInputBox = styled(Box)`
   background-color: #ffffff;
   border-radius: 10px;
   width: 85%;
+  
 `;
 const SearchBox = styled(InputBase)`
   width: 100%;
-  padding: 20px;
+  padding: 15px;
   height: 10px;
   padding-left: 25px;
 `;

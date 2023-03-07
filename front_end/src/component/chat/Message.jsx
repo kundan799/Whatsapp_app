@@ -1,5 +1,5 @@
 import { Box, styled } from "@mui/material";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,useRef } from "react";
 import { getMssage, UserMeaasge } from "../../service/api";
 import { AccountContext } from "../context/AccountProvider";
 import ChatFooter from "./ChatFooter";
@@ -24,9 +24,25 @@ const Message = ({ converation, person }) => {
   const [message, setMessage] = useState([]);
   const [falg, setFlag] = useState(false);
   const [file, setFile] = useState("");
-  const [image,setImage]=useState("")
+  const [inMessage,setInMessage]=useState(null)
+  const [image,setImage]=useState("");
+  const scroolBar=useRef();
 
-  const { account } = useContext(AccountContext);
+  const { account,socket } = useContext(AccountContext);
+
+  // <------------------------------------------------------------------------------------------------->
+
+  useEffect(()=>{
+    socket.current.on("getMessage",data=>{
+      setInMessage({
+        ...data,
+        createdAt:Date.now()
+      })
+    })
+
+  },[])
+
+    // <------------------------------------------------------------------------------------------------->
 
   useEffect(() => {
     const getMessageDeatils = async () => {
@@ -35,6 +51,16 @@ const Message = ({ converation, person }) => {
     };
     converation._id && getMessageDeatils();
   }, [person._id, converation._id, falg]);
+
+  useEffect(()=>{
+    inMessage && converation?.members?.includes(inMessage.senderId)
+    && setMessage(prev=>[...prev,inMessage])
+  },[inMessage,converation])
+
+  // scrool
+  // useEffect(()=>{
+  //   scroolBar.current?.scrollIntoView()
+  // },[message])
 
   const SendText = async (e) => {
     const code = e.keyCode || e.which;
@@ -60,6 +86,9 @@ const Message = ({ converation, person }) => {
       }
     
       //console.log(message)
+
+      socket.current.emit("sendMessage",message)// send message to reail time with the help of socket
+
       await UserMeaasge(message);
       setValue("");
       setFile("");
@@ -72,7 +101,7 @@ const Message = ({ converation, person }) => {
       <Component>
         {message &&
           message.map((el) => (
-            <Caintaner>
+            <Caintaner ref={scroolBar}>
               <SingleMessage el={el} />
             </Caintaner>
           ))}

@@ -13,7 +13,7 @@ const DividerComponent = styled(Divider)`
 `;
 
 const Convrsation = ({ text }) => {
-  const { account } = useContext(AccountContext);
+  const { account,socket, setActiveUser} = useContext(AccountContext);
   const [user, setUser] = useState([]);
 
   useEffect(() => {
@@ -29,6 +29,16 @@ const Convrsation = ({ text }) => {
     };
     fetchData();
   }, [text]);
+
+  useEffect(()=>{
+    socket.current.emit("addUser",account);// send user online things data to backend 
+    // except user from backend
+    socket.current.on("getuser",users=>{
+      setActiveUser(users);// active user save here
+
+    })
+
+  },[account])
   // use empty array becouse I want fetch data only one time
   //console.log("data",user)
   return (
