@@ -6,7 +6,8 @@ export const AccountContext = createContext(null);
 const AccountProvider = ({ children }) => {
   const [account, setAccount] = useState();
   const [person, setPerson] = useState({});
-  const [activeuser,setActiveUser]=useState([])
+  const [activeuser,setActiveUser]=useState([]);
+  const [falg, setFlag] = useState(false);
 
   const socket=useRef();
 
@@ -16,7 +17,7 @@ const AccountProvider = ({ children }) => {
   },[])
 
   return (
-    <AccountContext.Provider value={{ account, setAccount, person, setPerson ,socket,activeuser,setActiveUser}}>
+    <AccountContext.Provider value={{ account, setAccount, person, setPerson ,socket,activeuser,setActiveUser,falg,setFlag}}>
       {children}
     </AccountContext.Provider>
   );

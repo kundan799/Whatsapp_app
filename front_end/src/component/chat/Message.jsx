@@ -22,13 +22,12 @@ const Caintaner = styled(Box)`
 const Message = ({ converation, person }) => {
   const [value, setValue] = useState("");
   const [message, setMessage] = useState([]);
-  const [falg, setFlag] = useState(false);
   const [file, setFile] = useState("");
   const [inMessage,setInMessage]=useState(null)
   const [image,setImage]=useState("");
   const scroolBar=useRef();
 
-  const { account,socket } = useContext(AccountContext);
+  const { account,socket,falg,setFlag } = useContext(AccountContext);
 
   // <------------------------------------------------------------------------------------------------->
 

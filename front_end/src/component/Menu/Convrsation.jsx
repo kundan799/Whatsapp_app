@@ -13,7 +13,7 @@ const DividerComponent = styled(Divider)`
 `;
 
 const Convrsation = ({ text }) => {
-  const { account,socket, setActiveUser} = useContext(AccountContext);
+  const { account,socket, setActiveUser,falg} = useContext(AccountContext);
   const [user, setUser] = useState([]);
 
   useEffect(() => {
